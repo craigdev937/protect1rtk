@@ -9,7 +9,7 @@
 
 .card {
     width: 100%;
-    max-width: 25rem;
+    max-width: 50rem;
     background: var(--bg-surface);
     border: 1px solid var(--border-main);
     border-radius: var(--radius);
@@ -191,3 +191,5 @@
         border-radius: var(--radius-sm);
     }
 }
+
+

@@ -4,9 +4,14 @@ import { UAS } from "../global/Hooks";
 export const ProtectedRoute = () => {
     const isAuth = UAS((state) => state.auth.isAuth);
 
-    return isAuth ? 
+    return (
+        isAuth ? 
         <Outlet /> : 
-        <Navigate to="/login" replace />;
+        <Navigate 
+            replace 
+            to="/login" 
+        />
+    );
 };
 
 

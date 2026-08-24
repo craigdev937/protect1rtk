@@ -39,8 +39,8 @@ export const Login = () => {
         : null;
 
     return (
-        <div className={styles.form}>
-            <div className={styles.card}>
+        <main className={styles.form}>
+            <section className={styles.card}>
                 <div className={styles.avatar}>
                     <User size={32} />
                 </div>
@@ -50,20 +50,23 @@ export const Login = () => {
                 </p>
 
                 {errorMessage &&
-                    <p className={styles.formError}>{errorMessage}</p>}
+                    <p className={styles.formError}
+                        >{errorMessage}
+                    </p>
+                }
 
                 <form
                     noValidate
                     onSubmit={handleSubmit(onSubmit)}
                 >
-                    <div className={styles.field}>
+                    <section className={styles.field}>
                         <label
                             className={styles.label}
                             htmlFor="username"
                         >
                             Username
                         </label>
-                        <div className={styles.inputWrapper}>
+                        <aside className={styles.inputWrapper}>
                             <User
                                 className={styles.inputIcon}
                                 size={18}
@@ -75,21 +78,21 @@ export const Login = () => {
                                 autoComplete="username"
                                 {...register("username")}
                             />
-                        </div>
+                        </aside>
                         {errors.username &&
                             <p className={styles.fieldError}>
                                 {errors.username?.message}
                             </p>}
-                    </div>
+                    </section>
 
-                    <div className={styles.field}>
+                    <section className={styles.field}>
                         <label
                             className={styles.label}
                             htmlFor="password"
                         >
                             Password
                         </label>
-                        <div className={styles.inputWrapper}>
+                        <aside className={styles.inputWrapper}>
                             <Lock
                                 className={styles.inputIcon}
                                 size={18}
@@ -114,14 +117,14 @@ export const Login = () => {
                                     <EyeOff size={18} /> :
                                     <Eye size={18} />}
                             </button>
-                        </div>
+                        </aside>
                         {errors.password &&
                             <p className={styles.fieldError}>
                                 {errors.password?.message}
                             </p>}
-                    </div>
+                    </section>
 
-                    <div className={styles.options}>
+                    <section className={styles.options}>
                         <label className={styles.checkboxLabel}>
                             <input type="checkbox" />
                             Remember me
@@ -132,7 +135,7 @@ export const Login = () => {
                         >
                             Forgot password?
                         </a>
-                    </div>
+                    </section>
 
                     <button
                         type="submit"
@@ -142,8 +145,8 @@ export const Login = () => {
                         {isLoading ? "Logging in..." : "Log In"}
                     </button>
                 </form>
-            </div>
-        </div>
+            </section>
+        </main>
     );
 };
 

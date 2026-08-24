@@ -15,6 +15,7 @@ export const Navbar = () => {
     const isAuth = UAS((state) => state.auth.isAuth);
     const handleClick = () => setOpen(!open);
     const closeMenu = () => setOpen(false);
+    
     const handleLogout = () => {
         dispatch(logout());
         closeMenu();
@@ -91,6 +92,7 @@ export const Navbar = () => {
                             </Link>
                         </li>
 
+                        {/* PROTECTED LINKS */}
                         {!isAuth &&
                             <li className={classes.nav__item}>
                                 <Link
@@ -112,8 +114,7 @@ export const Navbar = () => {
                                     Logout
                                 </button>
                             </li>}
-
-                        {/* Protected Links */}
+                        
                         {isAuth &&
                             <li className={classes.nav__item}>
                                 <Link
