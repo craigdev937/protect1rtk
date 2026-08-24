@@ -83,7 +83,7 @@ export interface ILog {
     refreshToken: string
 };
 
-export interface IAuthUser {
+export interface IAuth {
     id: number,
     username: string,
     email: string,
@@ -93,8 +93,8 @@ export interface IAuthUser {
 };
 
 export interface IAuthState {
-    isAuthenticated: boolean,
-    user: IAuthUser | null
+    isAuth: boolean,
+    user: IAuth | null
 };
 
 

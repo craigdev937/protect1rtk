@@ -24,6 +24,7 @@ export const Login = () => {
         const result = await logUser(data);
         if (result.data) {
             dispatch(setUser(result.data));
+            alert("The User has successfully logged in!");
             navigate("/");
         }
     };

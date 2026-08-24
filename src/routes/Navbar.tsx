@@ -12,12 +12,13 @@ export const Navbar = () => {
     const dispatch = UAD();
     const navigate = useNavigate();
     const mode = UAS((state) => state.theme.mode);
-    const isAuthenticated = UAS((state) => state.auth.isAuthenticated);
+    const isAuth = UAS((state) => state.auth.isAuth);
     const handleClick = () => setOpen(!open);
     const closeMenu = () => setOpen(false);
     const handleLogout = () => {
         dispatch(logout());
         closeMenu();
+        alert("The User has successfully logged out!");
         navigate("/");
     };
 
@@ -90,7 +91,7 @@ export const Navbar = () => {
                             </Link>
                         </li>
 
-                        {!isAuthenticated &&
+                        {!isAuth &&
                             <li className={classes.nav__item}>
                                 <Link
                                     to={"/login"}
@@ -101,7 +102,7 @@ export const Navbar = () => {
                                 </Link>
                             </li>}
 
-                        {isAuthenticated &&
+                        {isAuth &&
                             <li className={classes.nav__item}>
                                 <button
                                     type="button"
@@ -113,7 +114,7 @@ export const Navbar = () => {
                             </li>}
 
                         {/* Protected Links */}
-                        {isAuthenticated &&
+                        {isAuth &&
                             <li className={classes.nav__item}>
                                 <Link
                                     to={"/users"}

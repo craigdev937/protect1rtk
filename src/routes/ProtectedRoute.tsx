@@ -1,11 +1,12 @@
-import React from "react";
 import { Navigate, Outlet } from "react-router";
 import { UAS } from "../global/Hooks";
 
 export const ProtectedRoute = () => {
-    const isAuthenticated = UAS((state) => state.auth.isAuthenticated);
+    const isAuth = UAS((state) => state.auth.isAuth);
 
-    return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
+    return isAuth ? 
+        <Outlet /> : 
+        <Navigate to="/login" replace />;
 };
 
 
