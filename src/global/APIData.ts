@@ -1,7 +1,8 @@
 import { createApi, 
     fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { IUData, IUser, IPData, 
-    IPost } from "../models/Interfaces";
+    IPost, ILog } from "../models/Interfaces";
+import type { LType } from "../validation/Schema";
 const URL = "https://dummyjson.com";
 
 export const APIData = createApi({
@@ -47,7 +48,15 @@ export const APIData = createApi({
                 method: "GET"
             }),
             providesTags: ["Users"]
-        })
+        }),
+        log: builder.mutation<ILog, LType>({
+            query: (payload) => ({
+                url: "/auth/login",
+                method: "POST",
+                body: payload
+            }),
+            invalidatesTags: ["Users"]
+        }),
     })
 });
 

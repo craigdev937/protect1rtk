@@ -1,6 +1,193 @@
-.title {
-    background-color: var(--turquoise);
-    color: var(--black);
+.form {
+    display: grid;
+    place-items: center;
+    min-height: calc(100dvh - 3.75rem);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
 }
 
+.card {
+    width: 100%;
+    max-width: 25rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-main);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.25);
+}
 
+.avatar {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 1rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--gradient);
+    color: var(--white);
+}
+
+.title {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--white);
+    opacity: 0.75;
+    margin-bottom: 1.5rem;
+}
+
+.formError {
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--red);
+    color: var(--red);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.field {
+    margin-bottom: 1.25rem;
+}
+
+.label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.4rem;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 0.75rem;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.input {
+    width: 100%;
+    padding: 0.7rem 0.75rem 0.7rem 2.5rem;
+    font-size: 1rem;
+    color: var(--text-main);
+    background: var(--bg-main);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input::placeholder {
+    color: var(--text-muted);
+}
+
+.input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 0.15rem rgba(96, 165, 250, 0.35);
+}
+
+.toggleBtn {
+    position: absolute;
+    right: 0.5rem;
+    display: grid;
+    place-items: center;
+    padding: 0.35rem;
+    border: none;
+    background: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.toggleBtn:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.fieldError {
+    font-size: 0.8rem;
+    color: var(--red);
+    margin-top: 0.35rem;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.forgotLink {
+    color: var(--white);
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+.forgotLink:hover {
+    color: var(--pink);
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--gradient);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.1s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+
+.submitBtn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@media (max-width: 30rem) {
+    .form {
+        padding: 1rem;
+    }
+
+    .card {
+        padding: 2rem 1.25rem;
+        border-radius: var(--radius-sm);
+    }
+}

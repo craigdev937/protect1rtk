@@ -27,6 +27,7 @@ const RouteList = createBrowserRouter([
                 path: "/login",
                 element: <Login />
             },
+            // THESE ROUTES ARE PROTECTED WITH LOGIN
             {
                 path: "/users",
                 element: <AllUsers />

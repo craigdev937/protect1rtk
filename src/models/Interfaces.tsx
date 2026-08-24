@@ -71,5 +71,10 @@ export interface IUData {
     users: IUser[]
 };
 
+export interface ILog {
+    username: string,
+    password: string
+};
+
 
 
