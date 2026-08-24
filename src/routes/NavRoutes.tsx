@@ -10,41 +10,46 @@ import { AllUsers } from "../pages/all/AllUsers";
 import { Login } from "../pages/login/Login";
 import { User } from "../pages/user/User";
 
-const RouteList = createBrowserRouter([
+const RouteList = createBrowserRouter(
+    [
+        {
+            path: "/",
+            element: <Navbar />,
+            errorElement: <NotFound />,
+            children: [
+                {
+                    path: "/",
+                    element: <Home />
+                },
+                {
+                    path: "/posts",
+                    element: <Posts />
+                },
+                {
+                    path: "/login",
+                    element: <Login />
+                },
+                // THESE ROUTES ARE PROTECTED WITH LOGIN
+                {
+                    element: <ProtectedRoute />,
+                    children: [
+                        {
+                            path: "/users",
+                            element: <AllUsers />
+                        },
+                        {
+                            path: "/user/:id",
+                            element: <User />
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
     {
-        path: "/",
-        element: <Navbar />,
-        errorElement: <NotFound />,
-        children: [
-            {
-                path: "/",
-                element: <Home />
-            },
-            {
-                path: "/posts",
-                element: <Posts />
-            },
-            {
-                path: "/login",
-                element: <Login />
-            },
-            // THESE ROUTES ARE PROTECTED WITH LOGIN
-            {
-                element: <ProtectedRoute />,
-                children: [
-                    {
-                        path: "/users",
-                        element: <AllUsers />
-                    },
-                    {
-                        path: "/user/:id",
-                        element: <User />
-                    }
-                ]
-            }
-        ]
+        basename: import.meta.env.PROD ? "/protect1rtk" : "/"
     }
-]);
+);
 
 export const NavRoutes = () => {
     return (

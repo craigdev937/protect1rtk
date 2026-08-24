@@ -9,6 +9,7 @@
     "test:watch": "rstest --watch",
     "dev": "rsbuild dev",
     "build": "rsbuild build",
+    "postbuild": "node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
     "preview": "rsbuild preview"
   },
   "keywords": [],
