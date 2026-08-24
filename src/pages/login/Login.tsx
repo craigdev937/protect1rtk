@@ -1,22 +1,31 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import styles from "./Login.module.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { User, Lock, Eye, EyeOff } from "lucide-react";
 import { APIData } from "../../global/APIData";
+import { UAD } from "../../global/Hooks";
+import { setUser } from "../../global/AuthSlice";
 import { LSchema } from "../../validation/Schema";
 import type { LType } from "../../validation/Schema";
 
 export const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [logUser, { isLoading, error }] = APIData.useLogMutation();
+    const dispatch = UAD();
+    const navigate = useNavigate();
     const { register, handleSubmit,
         formState: { errors }} = useForm<LType>({
         resolver: zodResolver(LSchema)
     });
 
     const onSubmit = async (data: LType) => {
-        await logUser(data);
+        const result = await logUser(data);
+        if (result.data) {
+            dispatch(setUser(result.data));
+            navigate("/");
+        }
     };
 
     const errorMessage = error

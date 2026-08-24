@@ -58,6 +58,13 @@ header.nav__header {
     transition: all 0.5s ease-out;
 }
 
+button.nav__links {
+    font: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 /* THEME TOGGLE */
 .nav__theme {
     display: grid;

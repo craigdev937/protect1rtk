@@ -72,8 +72,29 @@ export interface IUData {
 };
 
 export interface ILog {
+    id: number,
     username: string,
-    password: string
+    email: string,
+    firstName: string,
+    lastName: string,
+    gender: string,
+    image: string,
+    accessToken: string,
+    refreshToken: string
+};
+
+export interface IAuthUser {
+    id: number,
+    username: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    image: string
+};
+
+export interface IAuthState {
+    isAuthenticated: boolean,
+    user: IAuthUser | null
 };
 
 

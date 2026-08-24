@@ -3,6 +3,7 @@ import { createBrowserRouter,
     RouterProvider } from "react-router";
 import { NotFound } from "../components/NotFound";
 import { Navbar } from "./Navbar";
+import { ProtectedRoute } from "./ProtectedRoute";
 import { Home } from "../pages/home/Home";
 import { Posts } from "../pages/posts/Posts";
 import { AllUsers } from "../pages/all/AllUsers";
@@ -29,12 +30,17 @@ const RouteList = createBrowserRouter([
             },
             // THESE ROUTES ARE PROTECTED WITH LOGIN
             {
-                path: "/users",
-                element: <AllUsers />
-            },
-            {
-                path: "/user/:id",
-                element: <User />
+                element: <ProtectedRoute />,
+                children: [
+                    {
+                        path: "/users",
+                        element: <AllUsers />
+                    },
+                    {
+                        path: "/user/:id",
+                        element: <User />
+                    }
+                ]
             }
         ]
     }

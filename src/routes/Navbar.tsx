@@ -1,17 +1,25 @@
 import React from "react";
 import classes from "./Navbar.module.css";
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useNavigate } from "react-router";
 import { Sun, Moon } from "lucide-react";
 import { UAS, UAD } from "../global/Hooks";
 import { toggleTheme } from "../global/ThemeSlice";
+import { logout } from "../global/AuthSlice";
 import LOGO from "@public/star.png";
 
 export const Navbar = () => {
     const [open, setOpen] = React.useState(false);
     const dispatch = UAD();
+    const navigate = useNavigate();
     const mode = UAS((state) => state.theme.mode);
+    const isAuthenticated = UAS((state) => state.auth.isAuthenticated);
     const handleClick = () => setOpen(!open);
     const closeMenu = () => setOpen(false);
+    const handleLogout = () => {
+        dispatch(logout());
+        closeMenu();
+        navigate("/");
+    };
 
     return (
         <React.Fragment>
@@ -82,26 +90,39 @@ export const Navbar = () => {
                             </Link>
                         </li>
 
-                        <li className={classes.nav__item}>
-                            <Link
-                                to={"/login"}
-                                className={classes.nav__links}
-                                onClick={closeMenu}
-                            >
-                                Login
-                            </Link>
-                        </li>
+                        {!isAuthenticated &&
+                            <li className={classes.nav__item}>
+                                <Link
+                                    to={"/login"}
+                                    className={classes.nav__links}
+                                    onClick={closeMenu}
+                                >
+                                    Login
+                                </Link>
+                            </li>}
+
+                        {isAuthenticated &&
+                            <li className={classes.nav__item}>
+                                <button
+                                    type="button"
+                                    className={classes.nav__links}
+                                    onClick={handleLogout}
+                                >
+                                    Logout
+                                </button>
+                            </li>}
 
                         {/* Protected Links */}
-                        <li className={classes.nav__item}>
-                            <Link
-                                to={"/users"}
-                                className={classes.nav__links}
-                                onClick={closeMenu}
-                            >
-                                All Users
-                            </Link>
-                        </li>
+                        {isAuthenticated &&
+                            <li className={classes.nav__item}>
+                                <Link
+                                    to={"/users"}
+                                    className={classes.nav__links}
+                                    onClick={closeMenu}
+                                >
+                                    All Users
+                                </Link>
+                            </li>}
                     </menu>
                 </nav>
             </header>
